@@ -1,3 +1,4 @@
+![plot](./readme-docs/pokemon-page.png)
 # 🌟 Go-Pokédex 🌟
 
 [![Go](https://img.shields.io/badge/Go-1.23+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://golang.org)
@@ -120,8 +121,8 @@ Le projet est entièrement dockerisé, ce qui facilite la configuration et l'ex�
 
 ## 📸 Captures d'écran
 
-<img src="./readme-docs/home-page.png" alt="homepage">
-<img src="./readme-docs/pokemon-page.png" alt="pokemon page">
+![HomePage](./readme-docs/home-page.png)
+![Pokemon](./readme-docs/pokemon-page.png)
 
 ## 👤 Auteur
 
