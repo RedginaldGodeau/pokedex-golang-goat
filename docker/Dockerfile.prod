@@ -1,0 +1,32 @@
+# Dockerfile
+FROM golang:1.23-alpine AS builder
+
+ENV CGO_ENABLED=0
+
+WORKDIR /build
+
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+
+COPY . ./
+
+RUN go build -o backend main.go
+
+FROM gcr.io/distroless/static
+
+USER nonroot:nonroot
+
+WORKDIR /app
+
+COPY --chown=nonroot:nonroot .env.local .env
+COPY --chown=nonroot:nonroot .env.local .env.local
+COPY --from=builder --chown=nonroot:nonroot /build/backend backend
+COPY --chown=nonroot:nonroot public/ public/
+COPY --chown=nonroot:nonroot data/ data/
+
+ARG BUILD_REF=debug
+ENV BUILD_REF=${BUILD_REF}
+
+EXPOSE 8080
+
+ENTRYPOINT ["/app/backend"]

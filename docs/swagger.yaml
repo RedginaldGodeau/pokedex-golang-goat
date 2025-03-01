@@ -1,0 +1,145 @@
+basePath: /
+definitions:
+  pokemon.PokemonResponse:
+    properties:
+      attack:
+        type: integer
+      defense:
+        type: integer
+      generation:
+        type: integer
+      hp:
+        type: integer
+      id:
+        type: integer
+      legendary:
+        type: boolean
+      name:
+        type: string
+      pokedex:
+        type: integer
+      sp_attack:
+        type: integer
+      sp_defense:
+        type: integer
+      speed:
+        type: integer
+      total:
+        type: integer
+      type_1:
+        type: string
+      type_2:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Un Pokédex en golang
+  title: Pokedex
+  version: 1.0.0
+paths:
+  /api/pokemon/:
+    get:
+      consumes:
+      - application/json
+      description: Get all Pokemons
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/pokemon.PokemonResponse'
+            type: array
+      summary: Pokemon
+      tags:
+      - pokemon
+  /api/pokemon/{id}/:
+    get:
+      consumes:
+      - application/json
+      description: Get Pokemon by ID
+      parameters:
+      - description: Pokemon ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pokemon.PokemonResponse'
+      summary: Pokemon
+      tags:
+      - pokemon
+  /api/pokemon/{name}/name/:
+    get:
+      consumes:
+      - application/json
+      description: Get Pokemon by name
+      parameters:
+      - description: Pokemon name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pokemon.PokemonResponse'
+      summary: Pokemon
+      tags:
+      - pokemon
+  /api/pokemon/{pokedex}/pokedex/:
+    get:
+      consumes:
+      - application/json
+      description: Get Pokemon by Pokedex ID
+      parameters:
+      - description: Pokemon pokedex id
+        in: path
+        name: pokedex
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/pokemon.PokemonResponse'
+            type: array
+      summary: Pokemon
+      tags:
+      - pokemon
+  /api/pokemon/{search}/search/:
+    get:
+      consumes:
+      - application/json
+      description: Get Pokemon by name
+      parameters:
+      - description: Pokemon name search
+        in: path
+        name: search
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/pokemon.PokemonResponse'
+            type: array
+      summary: Pokemon
+      tags:
+      - pokemon
+swagger: "2.0"

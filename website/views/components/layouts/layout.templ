@@ -1,0 +1,25 @@
+package layouts
+
+type LayoutProps struct {
+    Children templ.Component
+}
+
+templ Layout(props LayoutProps) {
+    <!DOCTYPE html>
+	<html lang="fr">
+	    <head>
+            <meta charset="utf8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Pokedex</title>
+
+            <link href="/public/style.css" rel="stylesheet">
+            <script src="/public/index.js"></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            @props.Children
+        </body>
+	</html>
+}

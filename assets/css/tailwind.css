@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: #ce394f;
+    --color-button: #574141;
+    --color-back-button: #bfa5a5;
+    --color-text: #fff5f5;
+    --color-body: #211919;
+}
+
+body {
+    @apply text-text bg-background;
+    font-family: "JetBrains Mono";
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}

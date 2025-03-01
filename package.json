@@ -1,0 +1,29 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "tailwind:build": "npx @tailwindcss/cli -i ./assets/css/tailwind.css -o ./website/public/style.css",
+    "esbuild:build": "./node_modules/.bin/esbuild assets/typescript/main.ts --bundle  --outfile=./website/public/index.js --target=es2020",
+    "tailwind:watch": "npx @tailwindcss/cli -i ./assets/css/tailwind.css -o ./website/public/style.css --watch",
+    "esbuild:watch": "./node_modules/.bin/esbuild assets/typescript/main.ts --bundle  --outfile=./website/public/index.js --target=es2020",
+    "tailwind:mini": "npx @tailwindcss/cli -i ./assets/css/tailwind.css -o ./website/public/style.css --minify",
+    "esbuild:mini": "./node_modules/.bin/esbuild assets/typescript/main.ts --bundle  --outfile=./website/public/index.js --minify --target=es2020",
+    "build": "yarn tailwind:build && yarn esbuild:build",
+    "mini": "yarn tailwind:mini && yarn esbuild:mini",
+    "prettier:fix": "yarn exec prettier . --write"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.8",
+    "axios": "^1.8.1"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.16.3",
+    "@tailwindcss/cli": "^4.0.8",
+    "@types/alpinejs": "^3.13.11",
+    "esbuild": "^0.25.0",
+    "prettier": "^3.5.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4.0.8"
+  }
+}

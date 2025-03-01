@@ -1,0 +1,31 @@
+package views
+
+templ HomePage() {
+	<div x-data="$searchPokemon" x-init="initData()" class="p-10 bg-background w-full h-screen flex flex-col max-w-7xl m-auto">
+	    <h1 class="text-3xl font-bold uppercase"> Pokedex - Golang </h1>
+        <h2 class="text-2xl font-bold"> Pokemon List </h2>
+        <div>
+            <input class="my-5 w-full px-5 py-4 bg-text text-black rounded border-gray-400 border-b-2" placeholder="Search pokemon" type="text" max="50" min="1" x-model="searchInput" @keyup="searchSubmit()"/>
+        </div>
+        <div class="flex-1 overflow-y-auto text-black no-scrollbar">
+            <template x-for="(pokemon, i) in pokemonList" :key="pokemon.id">
+                <a class="flex gap-10 item-center px-5 py-10 border-gray-400 border-b-2 w-full rounded bg-slate-100 hover:bg-slate-300 transition mb-3" :href="'/' + pokemon.pokedex + '/'">
+                   <p x-text="pokemon.id + '.'" class="text-2xl content-center"></p>
+                   <div class="flex flex-col item-start justify-start gap-2">
+                       <h3 class="text-xl" x-text="pokemon.name"> pokemon name </h3>
+                       <div class="flex gap-2">
+                           <div x-text="pokemon.type1" class="p-2 text-white rounded" :class="getPokemonType(pokemon.type1)"></div>
+                           <template x-if="pokemon.type2 !== ''">
+                               <div x-text="pokemon.type2" class="p-2 text-white rounded" :class="getPokemonType(pokemon.type2)"></div>
+                           </template>
+                           <template x-if="pokemon.legendary">
+                               <div class="p-2 bg-yellow-300 rounded text-sm text-center">Legendary</div>
+                           </template>
+                       </div>
+                   </div>
+                </a>
+            </template>
+
+        </div>
+	</div>
+}

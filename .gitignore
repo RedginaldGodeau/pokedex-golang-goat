@@ -1,0 +1,9 @@
+node_modules
+assets/typescript/api
+bin
+ent/gen/*
+!ent/gen/.gitkeep
+website/public/*.js
+website/public/*.css
+.idea
+.env.local

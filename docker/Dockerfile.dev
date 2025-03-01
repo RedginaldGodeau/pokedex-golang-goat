@@ -1,0 +1,20 @@
+FROM golang:1.23-alpine
+ENV CGO_ENABLED=0
+
+WORKDIR /app
+
+COPY go.mod go.sum /app/
+
+RUN go mod download
+RUN go install github.com/air-verse/air@latest
+RUN go install github.com/swaggo/swag/cmd/swag@latest
+RUN go install github.com/a-h/templ/cmd/templ@latest
+RUN go mod verify
+
+RUN apk add nodejs npm
+RUN npm install --global yarn
+
+COPY . ./
+
+ENTRYPOINT ["air"]
+CMD ["-c", ".air.toml"]

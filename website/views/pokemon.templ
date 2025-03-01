@@ -1,0 +1,73 @@
+package views
+
+import "fmt"
+
+templ Pokemon(id int) {
+	<div x-data="$getPokemon" x-init={ fmt.Sprintf("initData(%d)", id ) } class="p-10 bg-background w-full sm:h-screen flex flex-col max-w-7xl m-auto">
+	    <a class="border-b-back-button border-b-2 rounded bg-button text-text px-3 py-3 w-20 text-center mb-3" href="/"> &lt;- Home </a>
+	    <div class="flex flex-col sm:flex-row gap-5">
+	        <div class="w-full sm:w-1/2">
+
+	            <img :src="sprite" class="border-gray-400 border-b-2 w-full rounded bg-slate-100 mb-5" width="100%" height="auto" alt="pokemon image">
+
+                <div class="border-gray-400 border-b-2 w-full rounded bg-slate-100 p-4 text-black">
+                    <h1 class="text-2xl mb-5" x-text="pokemon?.name"></h1>
+                    <div class="flex gap-2 ">
+                       <div x-text="pokemon?.type1" class="p-2 text-white rounded" :class="getPokemonType(pokemon?.type1)"></div>
+                       <template x-if="pokemon?.type2 !== ''">
+                           <div x-text="pokemon?.type2" class="p-2 text-white rounded" :class="getPokemonType(pokemon?.type2)"></div>
+                       </template>
+                       <template x-if="pokemon?.legendary">
+                           <div class="p-2 bg-yellow-300 rounded text-sm text-center">Legendary</div>
+                       </template>
+                   </div>
+               </div>
+	        </div>
+	        <div class="flex-1 border-gray-400 border-b-2 w-full rounded bg-slate-100 h-auto text-black p-10 text-xl flex flex-col justify-between">
+	            <div>
+	                <div class="flex gap-2">
+                        <h2 class="font-bold"> HP: </h2>
+                        <p x-text="pokemon?.hp"></p>
+                    </div>
+
+                    <div class="flex gap-2 mt-5">
+                        <h2 class="font-bold"> Attack: </h2>
+                        <p x-text="pokemon?.attack"></p>
+                    </div>
+
+                    <div class="flex gap-2 mt-5">
+                        <h2 class="font-bold"> Defense: </h2>
+                        <p x-text="pokemon?.defense"></p>
+                    </div>
+
+                    <div class="flex gap-2 mt-5">
+                        <h2 class="font-bold"> Special Attack: </h2>
+                        <p x-text="pokemon?.spAttack"></p>
+                    </div>
+
+                    <div class="flex gap-2 mt-5">
+                        <h2 class="font-bold"> Special Defense: </h2>
+                        <p x-text="pokemon?.spDefense"></p>
+                    </div>
+
+                    <div class="flex gap-2 my-5">
+                        <h2 class="font-bold"> Speed: </h2>
+                        <p x-text="pokemon?.speed"></p>
+                    </div>
+                    <hr/>
+                    <div class="flex gap-2 mt-5">
+                        <h2 class="font-bold"> Total: </h2>
+                        <p x-text="pokemon?.total"></p>
+                    </div>
+	            </div>
+
+                <div class="flex justify-between items-center gap-1 mt-10 sm:mt-0">
+                    <template x-if={fmt.Sprintf("%d > 1", id)}>
+                        <a class="border-b-button border-b-2 w-full rounded bg-back-button text-black flex-1 px-3 py-3" href={templ.SafeURL(fmt.Sprintf("/%d/", id-1))}> Prev </a>
+                    </template>
+                    <a class="border-b-back-button border-b-2 w-full rounded bg-button text-text flex-1 px-3 py-3" href={templ.SafeURL(fmt.Sprintf("/%d/", id+1))}> Next </a>
+                </div>
+	        </div>
+	    </div>
+    </div>
+}
