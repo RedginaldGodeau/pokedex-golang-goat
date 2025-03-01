@@ -7,3 +7,4 @@ website/public/*.js
 website/public/*.css
 .idea
 .env.local
+.DS_Store

@@ -25,8 +25,6 @@ func NewDatabase(env *env.Env) *gen.Client {
 	// 	applyMigrations(dataSourceName)
 	// }
 
-	log.Println(dataSourceName)
-
 	db, err := sql.Open("pgx", dataSourceName)
 	if err != nil {
 		log.Fatalf("Failed opening connection to postgres: %v", err)
